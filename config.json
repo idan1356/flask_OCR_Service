@@ -1,0 +1,55 @@
+{
+  "allowed_image_formats": [
+    "JPEG",
+    "JPG",
+    "PNG"
+  ],
+  "supported_languages": [
+    "af",
+    "az",
+    "bs",
+    "cs",
+    "cy",
+    "da",
+    "de",
+    "en",
+    "es",
+    "et",
+    "fr",
+    "ga",
+    "hr",
+    "hu",
+    "id",
+    "is",
+    "it",
+    "ku",
+    "la",
+    "lt",
+    "lv",
+    "mi",
+    "ms",
+    "mt",
+    "nl",
+    "no",
+    "oc",
+    "pi",
+    "pl",
+    "pt",
+    "ro",
+    "rs_latin",
+    "sk",
+    "sl",
+    "sq",
+    "sv",
+    "sw",
+    "tl",
+    "tr",
+    "uz",
+    "vi"
+  ],
+  "default_reader_language_setup":
+  [
+    "en"
+  ],
+  "lru_cache_size": 10
+}
