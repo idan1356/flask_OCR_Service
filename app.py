@@ -24,7 +24,3 @@ def index_page():
 
 api = Api(app, version='1.0', title='OCR service', description='OCR', doc='/api/docs')
 api.add_namespace(ocr_ns)
-
-
-if __name__ == "__main__":
-    app.run(debug=False)

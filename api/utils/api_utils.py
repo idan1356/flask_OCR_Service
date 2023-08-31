@@ -6,7 +6,7 @@ from model.ocr_model import LRUCachedOCRModel
 from api.utils.misc import get_file_extension_from_name, add_sentence_outline_to_image
 
 
-def validate_file_extension(user_image_file: FileStorage)-> None:
+def validate_file_extension(user_image_file: FileStorage) -> None:
     file_extension = get_file_extension_from_name(user_image_file.filename)
     allowed_image_formats = current_app.config["allowed_image_formats"]
 
