@@ -1,3 +1,4 @@
+![Alt text](readme.png)
 # Optical Character Recognition (OCR) Service
 
 This repository contains a Flask-based REST API for performing Optical Character Recognition (OCR) on uploaded images. It utilizes the Flask-RESTx library to define the API endpoints and manage request and response formats.
@@ -20,6 +21,7 @@ The API will be accessible at `http://localhost:5000/api/decipher-text`.
 ## API Endpoints
 
 The API documentation provides detailed information about the available endpoints, request and response formats, and example usage. You can access the documentation by visiting `/api/docs` in your browser.
+
 ### Upload Image for OCR
 
 Endpoint: `POST /api/decipher-text`
