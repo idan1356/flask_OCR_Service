@@ -50,9 +50,7 @@ The project is organized as follows:
 
 ## OCR Model Caching
 
-The OCR model used by the service is LRU (Least Recently Used) cached to improve performance. The caching is implemented using the `functools.lru_cache` decorator.
-
-The OCR model initialization is managed through the `OCRModelSingleton` class, ensuring that only one instance of the model is created. Additionally, the `LRUCachedOCRModel` class uses the `lru_cache` decorator to cache OCR models based on the languages used for processing.
+The OCR model used by the service is LRU (Least Recently Used) cached to improve performance. The caching is implemented using the `functools.lru_cache` decorator, to cache OCR models based on the languages used for processing.
 
 ## Configuration
 
