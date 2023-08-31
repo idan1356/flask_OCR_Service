@@ -29,7 +29,7 @@ This endpoint allows you to upload an image for Optical Character Recognition.
 
 - `user_image`: The image file to be processed.
 - `langs`: Comma-separated list of languages in the image (see language list in config file).
-- `get_processed_image`: Whether the processed image should be returned.
+- `get_processed_image`: Whether the processed image (rectangles around sentences found by the model) should be returned.
 
 **Responses:**
 
