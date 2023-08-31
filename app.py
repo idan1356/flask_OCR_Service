@@ -3,8 +3,8 @@ import json
 from flask import Flask, render_template
 from flask_restx import Api
 
-from api import ocr_ns
-from api_utils.json_encoder import NumpyJSONEncoder
+from api.api import ocr_ns
+from api.components.json_encoder import NumpyJSONEncoder
 
 # app settings
 app = Flask(__name__)

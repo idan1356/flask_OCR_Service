@@ -12,10 +12,7 @@ imageInput.addEventListener('change', () => {
         const formData = new FormData();
         formData.append('user_image', selectedFile);
 
-        fetch('/api/decipher-text', {
-            method: 'POST',
-            body: formData,
-        })
+        fetch('/api/decipher-text?get_processed_image=true', {method: 'POST', body: formData})
         .then(response => response.json())
         .then(data => {
             textArea.value = data["reader_data"].map(item => item[1]).join(', ');
