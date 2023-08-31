@@ -2,6 +2,7 @@ from flask import current_app
 from typing import List
 from werkzeug.datastructures import FileStorage
 
+from api.exceptions.exceptions import UnsupportedFileFormat, UnsupportedLanguageOfModel
 from model.ocr_model import LRUCachedOCRModel
 from api.utils.misc import get_file_extension_from_name, add_sentence_outline_to_image
 
@@ -11,15 +12,13 @@ def validate_file_extension(user_image_file: FileStorage) -> None:
     allowed_image_formats = current_app.config["allowed_image_formats"]
 
     if file_extension.upper() not in allowed_image_formats:
-        raise ValueError(f"Unsupported image type: {file_extension},"
-                         f"Use supported types: {allowed_image_formats}")
+        raise UnsupportedFileFormat(file_extension, allowed_image_formats)
 
 
 def validate_languages_selected(user_languages_list: List) -> None:
     # check if user languages list is subset of list of languages supported by model
     if not all(lang in current_app.config["supported_languages"] for lang in user_languages_list):
-        raise ValueError(f"One or more of the following languages is not supported: {user_languages_list},"
-                         f"see config file for supported langs by model.")
+        raise UnsupportedLanguageOfModel(user_languages_list)
 
 
 def process_image(user_file_image: FileStorage, languages_list: List) -> tuple:

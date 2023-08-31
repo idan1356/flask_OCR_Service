@@ -1,12 +1,18 @@
 from flask_restx import Namespace, Resource
-
 from api.components.parsers import upload_parser
 from api.components.data_models import response_model_template, error_model_template
 
 from .utils.api_utils import process_image, validate_file_extension, validate_languages_selected
 from .utils.misc import image_bytes_to_base64
+from api.exceptions.exceptions import UnsupportedFileFormat, UnsupportedLanguageOfModel
 
 ocr_ns = Namespace('api', description='Optical Character Recognition service')
+
+
+@ocr_ns.errorhandler(UnsupportedFileFormat)
+@ocr_ns.errorhandler(UnsupportedLanguageOfModel)
+def handle_unsupported(error):
+    return {'message': str(error)}, 400
 
 
 @ocr_ns.route('/decipher-text')
@@ -31,12 +37,8 @@ class OCRImage(Resource):
         languages_list = parsed_request['langs'].split(',')
         get_processed_image = parsed_request['get_processed_image']
 
-        try:
-            # perform validations
-            validate_file_extension(file_storage_image)
-            validate_languages_selected(languages_list)
-        except ValueError as e:
-            return {"message:": str(e)}, 400
+        validate_file_extension(file_storage_image)
+        validate_languages_selected(languages_list)
 
         # process image and create response
         ocr_reader_response, processed_image_byte_content = process_image(file_storage_image, languages_list)

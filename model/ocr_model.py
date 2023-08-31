@@ -1,6 +1,5 @@
 import easyocr
 
-from flask import current_app
 from functools import lru_cache
 
 
