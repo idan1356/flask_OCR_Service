@@ -1,7 +1,7 @@
-from functools import lru_cache
-
 import easyocr
+
 from flask import current_app
+from functools import lru_cache
 
 
 class OCRModelSingleton:
@@ -15,14 +15,7 @@ class OCRModelSingleton:
         return cls._instance
 
 
-class CachedOCRModel:
-    def __init__(self):
-        self.models = {}
-
+class LRUCachedOCRModel:
     @lru_cache(maxsize=5)
     def get_ocr_model(self, languages_set: frozenset) -> easyocr.Reader:
-        if languages_set not in self.models:
-            ocr_model = easyocr.Reader(list(languages_set))
-            self.models[languages_set] = ocr_model
-
-        return self.models[languages_set]
+        return easyocr.Reader(list(languages_set))

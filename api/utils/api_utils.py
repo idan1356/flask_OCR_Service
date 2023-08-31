@@ -2,7 +2,7 @@ from flask import current_app
 from typing import List
 from werkzeug.datastructures import FileStorage
 
-from ocr_model import CachedOCRModel
+from ocr_model import LRUCachedOCRModel
 from api.utils.misc import get_file_extension_from_name, add_sentence_outline_to_image
 
 
@@ -26,7 +26,7 @@ def process_image(user_file_image: FileStorage, languages_list: List) -> tuple:
     image_byte_content = user_file_image.read()
     file_extension = get_file_extension_from_name(user_file_image.filename)
 
-    ocr_reader_response = CachedOCRModel().get_ocr_model(frozenset(languages_list)).readtext(image_byte_content)
+    ocr_reader_response = LRUCachedOCRModel().get_ocr_model(frozenset(languages_list)).readtext(image_byte_content)
     sentence_outline_rectangles = [entry[0] for entry in ocr_reader_response]
     image_byte_content = add_sentence_outline_to_image(image_byte_content, sentence_outline_rectangles, file_extension)
 
