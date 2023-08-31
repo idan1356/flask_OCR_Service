@@ -8,12 +8,12 @@ from .utils.misc import image_bytes_to_base64
 
 ocr_ns = Namespace('api', description='Optical Character Recognition service')
 
-response_model = ocr_ns.model(*response_model_template)
-error_model = ocr_ns.model(*error_model_template)
-
 
 @ocr_ns.route('/decipher-text')
 class OCRImage(Resource):
+    response_model = ocr_ns.model(*response_model_template)
+    error_model = ocr_ns.model(*error_model_template)
+
     @ocr_ns.doc('upload-image-for-ocr', description='Upload an image for Optical Character Recognition',
                 params={
                     'langs': 'Languages of text in image to be deciphered (see language list in config file)',

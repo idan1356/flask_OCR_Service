@@ -2,7 +2,7 @@ from flask import current_app
 from typing import List
 from werkzeug.datastructures import FileStorage
 
-from ocr_model import LRUCachedOCRModel
+from model.ocr_model import LRUCachedOCRModel
 from api.utils.misc import get_file_extension_from_name, add_sentence_outline_to_image
 
 
