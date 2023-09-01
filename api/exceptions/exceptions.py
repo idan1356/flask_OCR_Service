@@ -12,3 +12,7 @@ class UnsupportedLanguageOfModel(Exception):
         self.message = f"One or more of the following languages is not supported: {user_language_input}," \
                        f"see config file for supported langs by model."
         super().__init__(self.message)
+
+
+def handle_unsupported(error):
+    return {'message': str(error)}, 400

@@ -1,4 +1,5 @@
 from flask_restx import Namespace, Resource
+
 from api.components.parsers import upload_parser
 from api.components.data_models import response_model_template, error_model_template
 
@@ -44,7 +45,7 @@ class OCRImage(Resource):
         ocr_reader_response, processed_image_byte_content = process_image(file_storage_image, languages_list)
         response = {"reader_data": ocr_reader_response}
 
-        # add processed image if requested
+        # add processed image if requested by user via query param
         if get_processed_image:
             response["base64_processed_image_content"] = image_bytes_to_base64(processed_image_byte_content)
 
